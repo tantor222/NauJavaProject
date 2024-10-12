@@ -1,14 +1,14 @@
 package ru.khamitovma.nauJava.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ru.khamitovma.nauJava.model.entity.Exercise;
 import ru.khamitovma.nauJava.repository.CrudRepository;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
+@Repository
 public class CrudRepositoryImpl implements CrudRepository<Exercise, UUID> {
 
     private final List<Exercise> exerciseContainer;

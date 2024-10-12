@@ -1,5 +1,16 @@
 package ru.khamitovma.nauJava.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -7,34 +18,26 @@ import java.util.UUID;
 /**
  * Вопросы к тестам
  */
-public class Question {
+@Entity
+@Table(name = "question")
+public class Question implements Serializable {
 
-    public Question(UUID id, String text, List<String> invariants, String answer) {
-        this.id = id;
-        this.text = text;
-        this.invariants = invariants;
-        this.answer = answer;
-    }
-
-    /**
-     * UUID уникальный идентификатор
-     */
+    @Id
+    @GeneratedValue
     private UUID id;
 
-    /**
-     * Текст вопроса
-     */
-    private String text;
+    private String description;
 
-    /**
-     * Неверные варианты ответов
-     */
-    private List<String> invariants;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Invariant> invariants = new ArrayList<>();
 
-    /**
-     * Верный ответ
-     */
-    private String answer;
+    public Question(String description, List<Invariant> invariants) {
+        this.description = description;
+        this.invariants = invariants;
+    }
+
+    public Question() {}
 
     public UUID getId() {
         return id;
@@ -44,28 +47,20 @@ public class Question {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public List<String> getInvariants() {
+    public List<Invariant> getInvariants() {
         return invariants;
     }
 
-    public void setInvariants(List<String> invariants) {
+    public void setInvariants(List<Invariant> invariants) {
         this.invariants = invariants;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
     }
 
     @Override
@@ -73,14 +68,11 @@ public class Question {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Question question = (Question) o;
-        return Objects.equals(id, question.id) &&
-                Objects.equals(text, question.text) &&
-                Objects.equals(invariants, question.invariants) &&
-                Objects.equals(answer, question.answer);
+        return Objects.equals(id, question.id) && Objects.equals(description, question.description) && Objects.equals(invariants, question.invariants);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, text, invariants, answer);
+        return Objects.hash(id, description, invariants);
     }
 }

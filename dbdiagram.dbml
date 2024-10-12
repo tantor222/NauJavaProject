@@ -1,0 +1,45 @@
+Table user {
+  id uuid [primary key]
+}
+
+Table test_solution {
+  id uuid
+  user uuid
+  exercise uuid
+  answer jsonb
+  score integer
+  total integer
+}
+
+Table exercise {
+  id uuid [primary key]
+  name varchar
+  description varchar
+}
+
+Table exercise_questions {
+  exercise uuid
+  question uuid
+}
+
+Table question {
+  id uuid [primary key]
+  description varchar
+}
+
+Table invariant {
+  id uuid
+  question uuid
+  description varchar
+  score integer
+}
+
+Ref: invariant.question > question.id
+
+Ref: test_solution.user > user.id
+
+Ref: test_solution.exercise > exercise.id
+
+Ref: exercise_questions.exercise > exercise.id
+
+Ref: exercise_questions.question > question.id

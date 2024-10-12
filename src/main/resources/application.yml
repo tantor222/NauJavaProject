@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: nauJava
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/naumen_project
+    username: naujava
+    password: naujava
+  jpa:
+    show_sql: true
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16.2
+    environment:
+      POSTGRES_DB: "naumen_project"
+      POSTGRES_USER: "naujava"
+      POSTGRES_PASSWORD: "naujava"
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+networks:
+  app-network:

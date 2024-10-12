@@ -3,6 +3,7 @@ package ru.khamitovma.nauJava.service;
 import ru.khamitovma.nauJava.model.entity.Exercise;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ExerciseService {
@@ -12,7 +13,7 @@ public interface ExerciseService {
      * @param exercise  Exercise
      * @return          boolean
      */
-    boolean exerciseCreate(Exercise exercise);
+    Exercise exerciseCreate(Exercise exercise);
 
     /**
      * Удалить вариант теста
@@ -27,18 +28,6 @@ public interface ExerciseService {
      */
     List<Exercise> getListExercises();
 
-    /**
-     * Начать тест
-     * @param id    UUID
-     * @return      Exercise
-     */
-    Exercise exerciseStart(UUID id);
-
-    /**
-     * Закончить тест и получить результаты
-     * @param exercise  Exercise
-     * @return          String
-     */
-    String exerciseComplete(Exercise exercise);
+    Optional<Exercise> findExercise(UUID uuid);
 
 }

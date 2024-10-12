@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import ru.khamitovma.nauJava.service.CommandProcessor;
 
 import java.util.Scanner;
@@ -19,6 +20,7 @@ public class CommandLineRunnerConfig {
     }
 
     @Bean
+    @Profile("!test")
     public CommandLineRunner commandScanner()
     {
         return args ->
