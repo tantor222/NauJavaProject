@@ -20,7 +20,7 @@ public class CommandLineRunnerConfig {
     }
 
     @Bean
-    @Profile("!test")
+    @Profile("cmd")
     public CommandLineRunner commandScanner()
     {
         return args ->
