@@ -1,6 +1,7 @@
 package ru.khamitovma.nauJava.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.khamitovma.nauJava.model.entity.User;
 import ru.khamitovma.nauJava.repository.UserRepository;
@@ -13,6 +14,7 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -20,8 +22,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser() {
-        return userRepository.save(new User());
+    public User createUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 
     @Override

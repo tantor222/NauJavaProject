@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface UserService {
 
-    User createUser();
+    User createUser(User user);
 
     Optional<User> findUser(UUID uuid);
 }

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("rest/invariant")
+@RequestMapping("api/invariant")
 public class InvariantController {
 
     private final InvariantRepository invariantRepository;

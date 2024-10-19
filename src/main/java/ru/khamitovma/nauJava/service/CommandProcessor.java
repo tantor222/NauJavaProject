@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.khamitovma.nauJava.model.entity.Exercise;
 import ru.khamitovma.nauJava.model.entity.Invariant;
 import ru.khamitovma.nauJava.model.entity.Question;
+import ru.khamitovma.nauJava.model.entity.User;
 
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +100,7 @@ public class CommandProcessor {
                 System.out.println("Not implemented...");
             }
             case "create_user" -> {
-                System.out.println(g.toJson(userService.createUser()));
+                System.out.println(g.toJson(userService.createUser(new User())));
             }
             case "test" -> {
                 // TODO

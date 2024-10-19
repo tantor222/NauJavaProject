@@ -1,9 +1,12 @@
 package ru.khamitovma.nauJava.model.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import ru.khamitovma.nauJava.model.enums.RoleEnum;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -19,8 +22,22 @@ public class User implements Serializable {
 
     private String name;
 
+    private String username;
+
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role;
+
     public User(String name) {
         this.name = name;
+    }
+
+    public User(String name, String username, String password, RoleEnum role) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public User() {}
@@ -41,12 +58,37 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEnum role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id);
+        return Objects.equals(id, user.id) &&
+                Objects.equals(username, user.username);
     }
 
     @Override
