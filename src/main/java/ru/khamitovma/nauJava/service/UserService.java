@@ -10,4 +10,6 @@ public interface UserService {
     User createUser(User user);
 
     Optional<User> findUser(UUID uuid);
+
+    Long getUsersCount();
 }

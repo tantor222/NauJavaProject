@@ -56,4 +56,9 @@ public class TestSolutionServiceImpl implements TestSolutionService {
         
         return null;
     }
+
+    @Override
+    public Long getTestSolutionsCount() {
+        return testSolutionRepository.count();
+    }
 }

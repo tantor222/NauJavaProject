@@ -31,4 +31,13 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findUser(UUID uuid) {
         return userRepository.findById(uuid);
     }
+
+    @Override
+    public Long getUsersCount() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        return userRepository.count();
+    }
 }

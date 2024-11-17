@@ -12,4 +12,6 @@ public interface TestSolutionService {
     Optional<TestSolution> startSolution(UUID userId, UUID exerciseId);
 
     TestSolution completeSolution(List<Answer> answers);
+
+    Long getTestSolutionsCount();
 }
