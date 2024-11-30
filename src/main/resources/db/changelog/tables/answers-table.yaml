@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_answers
+      author: KhamitovMA
+      preConditions:
+        - onFail: 'MARK_RAN'
+        - onFailMessage: 'Table answers already exists'
+        - not:
+            tableExists:
+              tableName: answers
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: answers_pkey
+                  name: id
+                  type: UUID
+              - column:
+                  remarks: "Автор ответа на задание"
+                  name: author
+                  type: UUID
+              - column:
+                  remarks: "Задание"
+                  name: exercise
+                  type: UUID
+              - column:
+                  remarks: "Ответы"
+                  name: question_answers
+                  type: jsonb
+              - column:
+                  remarks: "Итоговый результат"
+                  name: score
+                  type: INTEGER
+              - column:
+                  remarks: "Дата создания"
+                  name: created_at
+                  type: datetime
+            tableName: answers

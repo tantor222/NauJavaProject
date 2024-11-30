@@ -1,3 +1,15 @@
+server:
+  port: 8080
+cors:
+  origin: "*"
+  credentials: false
 spring:
-  application:
-    name: khamitov
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/naujava
+    username: postgres
+    password: postgres
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  jpa:
+    show_sql: true

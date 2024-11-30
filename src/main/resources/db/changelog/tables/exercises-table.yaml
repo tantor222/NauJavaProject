@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_exercises
+      author: KhamitovMA
+      preConditions:
+        - onFail: 'MARK_RAN'
+        - onFailMessage: 'Table exercises already exists'
+        - not:
+            tableExists:
+              tableName: exercises
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: exercises_pkey
+                  name: id
+                  type: UUID
+              - column:
+                  remarks: "Автор задания"
+                  name: author
+                  type: UUID
+              - column:
+                  remarks: "Описание задания"
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  remarks: "Дата создания"
+                  name: created_at
+                  type: datetime
+            tableName: exercises

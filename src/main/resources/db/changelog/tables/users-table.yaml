@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_users
+      author: KhamitovMA
+      preConditions:
+        - onFail: 'MARK_RAN'
+        - onFailMessage: 'Table users already exists'
+        - not:
+            tableExists:
+              tableName: users
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: users_pkey
+                  name: id
+                  type: UUID
+              - column:
+                  remarks: "Роль пользователя в системе"
+                  name: role
+                  type: VARCHAR(255)
+              - column:
+                  remarks: "Имя пользователя"
+                  name: username
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  remarks: "Пароль"
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  remarks: "Дата создания"
+                  name: created_at
+                  type: datetime
+            tableName: users
