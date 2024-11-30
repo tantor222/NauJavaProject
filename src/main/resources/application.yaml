@@ -13,3 +13,8 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
   jpa:
     show_sql: true
+    hibernate:
+      ddl-auto: none
+  data:
+    rest:
+      base-path: /rest
