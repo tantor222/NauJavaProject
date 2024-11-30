@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Exercise and Question</title>
+    <script>
+        function addInvariantField() {
+            const container = document.getElementById('invariants-container');
+            const newField = document.createElement('input');
+            newField.type = 'text';
+            newField.name = 'invariants';
+            newField.placeholder = 'Enter invariant';
+            newField.required = true;
+            container.appendChild(newField);
+        }
+    </script>
+</head>
+<body>
+<h1>Create Exercise and Questions</h1>
+<section>
+    <h2>Create Exercise</h2>
+    <form th:action="@{/exercise/update}" th:method="post">
+        <input type="hidden" name="id" th:value="${exercise.id}">
+        <div>
+            <label for="exerciseTitle">Title:</label>
+            <textarea id="exerciseTitle" name="title" rows="4" required></textarea>
+        </div>
+        <div>
+            <label for="exerciseDescription">Description:</label>
+            <textarea id="exerciseDescription" name="description" rows="4" required></textarea>
+        </div>
+        <button type="submit">Create Exercise</button>
+    </form>
+</section>
+<hr>
+<section>
+    <h2>Add a Question</h2>
+    <form th:action="@{/exercise/question}" th:method="post">
+        <input type="hidden" name="exercise" th:value="${exercise.id}">
+        <div>
+            <label for="questionDescription">Description:</label>
+            <textarea id="questionDescription" name="description" rows="3" required></textarea>
+        </div>
+        <div>
+            <label for="invariants">Invariants:</label>
+            <div id="invariants-container">
+                <input type="text" name="invariants" placeholder="Enter invariant" required>
+            </div>
+            <button type="button" onclick="addInvariantField()">Add Another Invariant</button>
+        </div>
+        <div>
+            <label for="answer">Answer:</label>
+            <input type="text" id="answer" name="answer" required>
+        </div>
+        <button type="submit">Add Question</button>
+    </form>
+</section>
+
+<hr>
+<section>
+    <h2>Questions List</h2>
+    <ul>
+        <li th:each="question : ${questions}">
+            <p><strong>Description:</strong> <span th:text="${question.description}"></span></p>
+            <p><strong>Invariants:</strong> <span th:text="${question.invariants}"></span></p>
+            <p><strong>Answer:</strong> <span th:text="${question.answer}"></span></p>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

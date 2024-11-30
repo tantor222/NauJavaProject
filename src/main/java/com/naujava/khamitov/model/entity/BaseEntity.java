@@ -29,11 +29,11 @@ public abstract class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    protected LocalDateTime createDate;
+    protected LocalDateTime createdAt;
 
 
     @PrePersist
     protected void onCreate() {
-        createDate = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 }

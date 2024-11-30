@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises List</title>
+</head>
+<body>
+<h1>Exercises List</h1>
+<section>
+    <a th:href="@{/exercise/create}">
+        <button>Create New Exercise</button>
+    </a>
+</section>
+<hr>
+<section>
+    <ul>
+        <li th:each="exercise : ${exercises}">
+            <p><strong>Author:</strong> <span th:text="${exercise.getAuthor()}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${exercise.getDescription()}"></span></p>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

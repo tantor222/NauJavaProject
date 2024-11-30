@@ -5,7 +5,6 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -13,7 +12,7 @@ import java.util.UUID;
 
 @SuperBuilder
 @Entity
-@Table(name = "exercise")
+@Table(name = "exercises")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,6 +21,7 @@ public class Exercise extends BaseEntity {
 
     private UUID author;
 
-    private String description;
+    private String title;
 
+    private String description;
 }

@@ -22,6 +22,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
         http.authorizeHttpRequests((authz) -> authz
+                        .requestMatchers("/**").permitAll()
                         .requestMatchers("/registration", "/login", "/logout").permitAll()
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/rest/**").permitAll()
