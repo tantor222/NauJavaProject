@@ -13,11 +13,17 @@
 </head>
 <body>
 <h1 th:text="${answer.getTitle()}">Test Title</h1>
+<section>
+    <a th:href="@{/answer/list}" th:style="${answer.isCompleted} ? 'display: block;' : 'display: none;'">
+        <button>Назад</button>
+    </a>
+</section>
 <form th:action="@{/answer/submit/{id}(id=${answer.getId()})}" th:method="post">
     <input type="hidden" name="id" th:value="${answer.id}">
     <div th:each="question, questionIndex : ${answer.getQuestions()}">
         <fieldset style="margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
             <input type="hidden" th:name="'questions[' + ${questionIndex.getIndex()} + '].id'" th:value="${question.getId()}">
+            <input type="hidden" th:name="'questions[' + ${questionIndex.getIndex()} + '].description'" th:value="${question.getDescription()}">
             <legend th:text="'Вопрос (' + (${questionIndex.getIndex()} + 1) + '): ' + ${question.getDescription()}">Question</legend>
             <div th:each="invariant : ${question.getInvariants()}">
                 <label>

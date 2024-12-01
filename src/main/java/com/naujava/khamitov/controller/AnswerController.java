@@ -2,8 +2,10 @@ package com.naujava.khamitov.controller;
 
 import com.naujava.khamitov.model.dto.AnswerDto;
 import com.naujava.khamitov.model.entity.Answer;
+import com.naujava.khamitov.model.entity.User;
 import com.naujava.khamitov.service.AnswerService;
 import com.naujava.khamitov.service.QuestionService;
+import com.naujava.khamitov.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.UUID;
 
 @Controller
@@ -23,6 +26,7 @@ public class AnswerController {
 
     private final AnswerService answerService;
     private final QuestionService questionService;
+    private final UserService userService;
 
     @GetMapping("/list")
     public String answerList(Model model) {
@@ -32,9 +36,9 @@ public class AnswerController {
     }
 
     @GetMapping("/create/{exerciseId}")
-    public String createAnswer(Model model, @PathVariable String exerciseId) {
-        // TODO set author from auth
-        Answer answer = answerService.createAnswer(UUID.fromString(exerciseId), UUID.randomUUID());
+    public String createAnswer(Principal principal, Model model, @PathVariable String exerciseId) {
+        User user = userService.getUserByName(principal.getName()).orElseThrow(() -> new RuntimeException("Fail"));
+        Answer answer = answerService.createAnswer(UUID.fromString(exerciseId), user.getId());
         return "redirect:/answer/form/" + answer.getId();
     }
 

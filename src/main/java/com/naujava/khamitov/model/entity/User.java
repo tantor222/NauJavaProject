@@ -22,7 +22,7 @@ import lombok.experimental.SuperBuilder;
 public class User extends BaseEntity {
 
     private String username;
-    private byte[] password;
+    private String password;
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;

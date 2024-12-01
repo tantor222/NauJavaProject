@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <style>
+        .form-container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container button.delete-button {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <a th:href="@{/user/list}">
+        <button>Назад</button>
+    </a>
+</section>
+<div class="form-container">
+    <h1>Редактировать пользователя</h1>
+    <form th:action="@{/user/update}" th:method="post" th:object="${user}">
+        <label for="id">ID</label>
+        <input type="text" id="id" th:field="*{id}" required readonly>
+        <label for="username">Логин</label>
+        <input type="text" id="username" th:field="*{username}" required readonly>
+        <label for="role">Роль</label>
+        <select id="role" th:field="*{role}">
+            <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"
+                    th:selected="${role == user.role}">Role Option</option>
+        </select>
+
+        <!-- Кнопки Submit и Delete -->
+        <div class="button-container">
+            <button type="submit">Сохранить</button>
+            <a th:href="@{/user/remove/{id}(id=${user.id})}" class="delete-button">Удалить</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

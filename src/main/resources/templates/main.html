@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<h1>Главная страница</h1>
+<section>
+    <a th:href="@{/exercise/list}">
+        <button>Задания</button>
+    </a>
+    <a th:href="@{/answer/list}">
+        <button>Ответы</button>
+    </a>
+    <a th:href="@{/user/list}">
+        <button>Пользователи</button>
+    </a>
+    <a th:href="@{/logout}">
+        <button>Выход</button>
+    </a>
+</section>
+</body>
+</html>

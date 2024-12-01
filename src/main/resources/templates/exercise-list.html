@@ -10,12 +10,16 @@
     <a th:href="@{/exercise/create}">
         <button>Создать новое задание</button>
     </a>
+    <a th:href="@{/main}">
+        <button>На главную</button>
+    </a>
 </section>
 <hr>
 <section>
     <ul>
         <li th:each="exercise : ${exercises}" style="border: 1px solid #ddd;">
             <a th:href="@{/exercise/form/{id}(id=${exercise.getId()})}"><button>Редактировать</button></a>
+            <a th:href="@{/exercise/remove/{id}(id=${exercise.getId()})}"><button>Удалить</button></a>
             <a th:href="@{/answer/create/{id}(id=${exercise.getId()})}"><button>Добавить ответ</button></a>
             <p><strong>Автор:</strong> <span th:text="${exercise.getAuthor()}"></span></p>
             <p><strong>Название:</strong> <span th:text="${exercise.getTitle()}"></span></p>

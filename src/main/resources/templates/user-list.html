@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+</head>
+<body>
+<h1>Список пользователей</h1>
+<section>
+    <a th:href="@{/main}">
+        <button>На главную</button>
+    </a>
+</section>
+<hr>
+<section>
+    <ul>
+        <li th:each="user : ${users}" style="border: 1px solid #ddd;">
+            <a th:href="@{/user/form/{id}(id=${user.getId()})}"><button>Подробности</button></a>
+            <p><strong>ID:</strong> <span th:text="${user.getId()}"></span></p>
+            <p><strong>Логин:</strong> <span th:text="${user.getUsername()}"></span></p>
+            <p><strong>Роль:</strong> <span th:text="${user.getRole()}"></span></p>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

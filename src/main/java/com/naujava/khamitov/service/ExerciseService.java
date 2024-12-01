@@ -37,4 +37,8 @@ public class ExerciseService {
         entity.setDescription(description);
         return exerciseRepository.save(entity);
     }
+
+    public void removeExercise(UUID exerciseId) {
+        exerciseRepository.deleteAllById(List.of(exerciseId));
+    }
 }
