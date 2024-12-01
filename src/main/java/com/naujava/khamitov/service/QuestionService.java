@@ -32,6 +32,7 @@ public class QuestionService {
                             .id(i.getId().toString())
                             .description(i.getDescription())
                             .invariants(List.of(i.getAnswer()))
+                            .score(i.getScore())
                             .build())
                     .toList();
         }

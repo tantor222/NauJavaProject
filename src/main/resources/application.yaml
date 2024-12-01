@@ -6,9 +6,9 @@ cors:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/naujava
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/${PG_DB:naujava}
+    username: ${PG_USER:postgres}
+    password: ${PG_PASSWORD:postgres}
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
   jpa:

@@ -23,7 +23,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/registration", "/login", "/logout").permitAll()
                         .requestMatchers("/swagger-ui/**", "/rest/**", "/user/**", "/exercise/remove/**",
-                                "/exercise/form/**", "/answer/form/**")
+                                "/exercise/form/**")
                         .hasRole(Role.ADMIN.name())
                         .requestMatchers("/answer/**", "/exercise/**")
                         .hasAnyRole(Role.USER.name(), Role.ADMIN.name())

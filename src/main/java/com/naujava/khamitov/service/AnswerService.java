@@ -26,6 +26,7 @@ public class AnswerService {
         return answerRepository.save(Answer.builder()
                 .author(author)
                 .exercise(exerciseId)
+                .questionAnswers(List.of())
                 .isCompleted(false)
                 .build());
     }
@@ -39,7 +40,7 @@ public class AnswerService {
     }
 
     public List<Answer> getAllUserAnswers(UUID authorId) {
-        return answerRepository.findAllBuAuthor(authorId);
+        return answerRepository.findAllByAuthor(authorId);
     }
 
     public Answer submitAnswer(AnswerDto answerDto) {

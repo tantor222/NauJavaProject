@@ -20,5 +20,6 @@ public class QuestionDto {
     private String description;
     private List<String> invariants;
     private String answer;
+    private int score;
 
 }

@@ -37,6 +37,9 @@
                 </label>
             </div>
             <input type="hidden" th:name="'questions[' + ${questionIndex.getIndex()} + '].answer'" value="">
+            <label th:style="${answer.isCompleted} ? 'display: block;' : 'display: none;'">
+                <input type="text" th:name="'questions[' + ${questionIndex.getIndex()} + '].score'" th:value="${question.getScore()}" readonly>
+            </label>
         </fieldset>
     </div>
     <button type="submit"
