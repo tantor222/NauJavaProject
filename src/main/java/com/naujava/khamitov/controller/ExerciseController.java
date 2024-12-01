@@ -34,8 +34,11 @@ public class ExerciseController {
     @GetMapping("/create")
     public String createExercise(Model model) {
         // TODO set author from auth
-        Exercise exercise = exerciseService.createExercise(new Exercise());
-        model.addAttribute("exercise", exercise);
+        Exercise entity = Exercise.builder()
+                .title("Задание " + UUID.randomUUID())
+                .description("Новое задание")
+                .build();
+        Exercise exercise = exerciseService.createExercise(entity);
         return "redirect:/exercise/form/" + exercise.getId();
     }
 
@@ -46,7 +49,7 @@ public class ExerciseController {
         List<Question> questions = questionService.getAllExerciseQuestions(exerciseUuid);
         model.addAttribute("exercise", exercise);
         model.addAttribute("questions", questions);
-        return "exercise";
+        return "exercise-form";
     }
 
     @PostMapping("/update")

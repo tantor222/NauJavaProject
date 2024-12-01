@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercises List</title>
+</head>
+<body>
+<h1>Список ответов</h1>
+<section>
+    <a th:href="@{/exercise/list}">
+        <button>Добавить новые ответ</button>
+    </a>
+</section>
+<hr>
+<section>
+    <ul>
+        <li th:each="answer : ${answers}" style="border: 1px solid #ddd;">
+            <a th:href="@{/answer/form/{id}(id=${answer.getId()})}"><button>Подробности</button></a>
+            <p><strong>Автор:</strong> <span th:text="${answer.getAuthor()}"></span></p>
+            <p><strong>Задание:</strong> <span th:text="${answer.getExercise()}"></span></p>
+            <p><strong>Результат:</strong> <span th:text="${answer.getScore()} + ' из ' + ${answer.getQuestionAnswers().size()}"></span></p>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

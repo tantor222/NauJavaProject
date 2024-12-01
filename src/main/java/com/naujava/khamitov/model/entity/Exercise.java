@@ -20,8 +20,6 @@ import java.util.UUID;
 public class Exercise extends BaseEntity {
 
     private UUID author;
-
     private String title;
-
     private String description;
 }

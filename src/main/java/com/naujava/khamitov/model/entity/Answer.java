@@ -5,9 +5,10 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +23,9 @@ import java.util.UUID;
 public class Answer extends BaseEntity {
 
     private UUID author;
-
     private UUID exercise;
-
+    @JdbcTypeCode(SqlTypes.JSON)
     private List<QuestionAnswer> questionAnswers;
+    private int score;
+    private boolean isCompleted;
 }

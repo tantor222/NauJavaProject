@@ -1,11 +1,10 @@
-package com.naujava.khamitov.model.entity;
+package com.naujava.khamitov.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,10 +12,12 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionAnswer implements Serializable {
+public class AnswerDto {
 
     private UUID id;
-    private String description;
-    private String answer;
+    private String title;
+    private List<QuestionDto> questions;
     private Integer score;
+    private boolean isCompleted;
+
 }

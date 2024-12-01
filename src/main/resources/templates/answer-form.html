@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Answer the Test</title>
+    <script>
+        function updateAnswer(radioButton) {
+            const questionIndex = radioButton.dataset.questionIndex;
+            const answerField = document.querySelector(`input[name="questions[${questionIndex}].answer"]`);
+            answerField.value = radioButton.value;
+        }
+    </script>
+</head>
+<body>
+<h1 th:text="${answer.getTitle()}">Test Title</h1>
+<form th:action="@{/answer/submit/{id}(id=${answer.getId()})}" th:method="post">
+    <input type="hidden" name="id" th:value="${answer.id}">
+    <div th:each="question, questionIndex : ${answer.getQuestions()}">
+        <fieldset style="margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <input type="hidden" th:name="'questions[' + ${questionIndex.getIndex()} + '].id'" th:value="${question.getId()}">
+            <legend th:text="'Вопрос (' + (${questionIndex.getIndex()} + 1) + '): ' + ${question.getDescription()}">Question</legend>
+            <div th:each="invariant : ${question.getInvariants()}">
+                <label>
+                    <input type="radio"
+                           th:value="${invariant}"
+                           th:name="'questions[' + ${questionIndex.getIndex()} + '].invariants'"
+                           th:data-question-index="${questionIndex.getIndex()}"
+                           th:attr="checked=${answer.isCompleted}"
+                           onclick="updateAnswer(this)">
+                    <span th:text="${invariant}">Invariant</span>
+                </label>
+            </div>
+            <input type="hidden" th:name="'questions[' + ${questionIndex.getIndex()} + '].answer'" value="">
+        </fieldset>
+    </div>
+    <button type="submit"
+            th:style="${answer.isCompleted} ? 'display: none;' : 'display: block;'"
+            style="padding: 10px 20px; font-size: 16px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Завершить тест
+    </button>
+    <div id="total-score-container"
+         th:style="${answer.isCompleted} ? 'display: block;' : 'display: none;'"
+         style="margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; display: none;">
+        <label>Результат:</label>
+        <span th:text="${answer.getScore()} + ' из ' + ${answer.getQuestions().size()}"></span>
+    </div>
+</form>
+</body>
+</html>

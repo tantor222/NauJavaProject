@@ -23,11 +23,8 @@ import java.util.UUID;
 public class Question extends BaseEntity {
 
     private UUID exercise;
-
     private String description;
-
     @JdbcTypeCode(SqlTypes.JSON)
     private List<String> invariants;
-
     private String answer;
 }

@@ -34,6 +34,10 @@ databaseChangeLog:
                   name: score
                   type: INTEGER
               - column:
+                  remarks: "Завершен"
+                  name: is_completed
+                  type: boolean
+              - column:
                   remarks: "Дата создания"
                   name: created_at
                   type: datetime

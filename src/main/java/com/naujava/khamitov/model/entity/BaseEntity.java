@@ -28,9 +28,7 @@ public abstract class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     protected LocalDateTime createdAt;
-
 
     @PrePersist
     protected void onCreate() {

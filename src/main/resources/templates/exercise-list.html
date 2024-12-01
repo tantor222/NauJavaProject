@@ -5,18 +5,20 @@
     <title>Exercises List</title>
 </head>
 <body>
-<h1>Exercises List</h1>
+<h1>Редактор заданий</h1>
 <section>
     <a th:href="@{/exercise/create}">
-        <button>Create New Exercise</button>
+        <button>Создать новое задание</button>
     </a>
 </section>
 <hr>
 <section>
     <ul>
-        <li th:each="exercise : ${exercises}">
-            <p><strong>Author:</strong> <span th:text="${exercise.getAuthor()}"></span></p>
-            <p><strong>Description:</strong> <span th:text="${exercise.getDescription()}"></span></p>
+        <li th:each="exercise : ${exercises}" style="border: 1px solid #ddd;">
+            <a th:href="@{/exercise/form/{id}(id=${exercise.getId()})}"><button>Редактировать</button></a>
+            <a th:href="@{/answer/create/{id}(id=${exercise.getId()})}"><button>Добавить ответ</button></a>
+            <p><strong>Автор:</strong> <span th:text="${exercise.getAuthor()}"></span></p>
+            <p><strong>Название:</strong> <span th:text="${exercise.getTitle()}"></span></p>
         </li>
     </ul>
 </section>

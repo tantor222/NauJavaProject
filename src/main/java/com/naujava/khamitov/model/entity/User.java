@@ -9,7 +9,6 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -23,9 +22,7 @@ import lombok.experimental.SuperBuilder;
 public class User extends BaseEntity {
 
     private String username;
-
     private byte[] password;
-
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;

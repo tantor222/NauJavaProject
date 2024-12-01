@@ -16,43 +16,48 @@
     </script>
 </head>
 <body>
-<h1>Create Exercise and Questions</h1>
+<h1>Редактор задания и вопросов</h1>
 <section>
-    <h2>Create Exercise</h2>
+    <a th:href="@{/exercise/list}">
+        <button>Вернуться</button>
+    </a>
+</section>
+<section>
+    <h2>Редактировать задание</h2>
     <form th:action="@{/exercise/update}" th:method="post">
         <input type="hidden" name="id" th:value="${exercise.id}">
         <div>
-            <label for="exerciseTitle">Title:</label>
-            <textarea id="exerciseTitle" name="title" rows="4" required></textarea>
+            <label for="exerciseTitle">Название:</label>
+            <textarea id="exerciseTitle" name="title" th:text="${exercise?.getTitle()}" rows="4" required></textarea>
         </div>
         <div>
-            <label for="exerciseDescription">Description:</label>
-            <textarea id="exerciseDescription" name="description" rows="4" required></textarea>
+            <label for="exerciseDescription">Описание:</label>
+            <textarea id="exerciseDescription" name="description" th:text="${exercise?.getDescription()}" rows="4" required></textarea>
         </div>
-        <button type="submit">Create Exercise</button>
+        <button type="submit">Редактировать</button>
     </form>
 </section>
 <hr>
 <section>
-    <h2>Add a Question</h2>
+    <h2>Добавить вопрос</h2>
     <form th:action="@{/exercise/question}" th:method="post">
         <input type="hidden" name="exercise" th:value="${exercise.id}">
         <div>
-            <label for="questionDescription">Description:</label>
+            <label for="questionDescription">Описание:</label>
             <textarea id="questionDescription" name="description" rows="3" required></textarea>
         </div>
         <div>
-            <label for="invariants">Invariants:</label>
+            <label for="invariants">Варианты ответов:</label>
             <div id="invariants-container">
                 <input type="text" name="invariants" placeholder="Enter invariant" required>
             </div>
-            <button type="button" onclick="addInvariantField()">Add Another Invariant</button>
+            <button type="button" onclick="addInvariantField()">Добавить вариант ответа</button>
         </div>
         <div>
-            <label for="answer">Answer:</label>
+            <label for="answer">Ответ:</label>
             <input type="text" id="answer" name="answer" required>
         </div>
-        <button type="submit">Add Question</button>
+        <button type="submit">Добавить вопрос</button>
     </form>
 </section>
 
