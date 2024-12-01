@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Ответ с ошибкой
+ */
 @Getter
 @Setter
 @AllArgsConstructor

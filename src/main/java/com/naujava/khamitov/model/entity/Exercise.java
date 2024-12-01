@@ -10,6 +10,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+/**
+ * Модель задания
+ */
 @SuperBuilder
 @Entity
 @Table(name = "exercises")

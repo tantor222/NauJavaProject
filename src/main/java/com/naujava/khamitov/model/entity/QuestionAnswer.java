@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Ответ на вопрос в бланке задания
+ */
 @Builder
 @Data
 @AllArgsConstructor

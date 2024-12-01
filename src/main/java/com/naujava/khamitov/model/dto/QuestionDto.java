@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Вопросы в бланке задания
+ */
 @Builder
 @Data
 @AllArgsConstructor

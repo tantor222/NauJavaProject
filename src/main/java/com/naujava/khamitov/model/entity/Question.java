@@ -13,6 +13,9 @@ import org.hibernate.type.SqlTypes;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Вопрос в задании
+ */
 @SuperBuilder
 @Entity
 @Table(name = "questions")

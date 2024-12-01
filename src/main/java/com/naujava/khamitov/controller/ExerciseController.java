@@ -66,7 +66,7 @@ public class ExerciseController {
 
     @PostMapping("/question")
     public String createQuestion(@RequestParam String exercise, @RequestParam String description,
-        @RequestParam List<String> invariants, @RequestParam String answer) {
+                                 @RequestParam List<String> invariants, @RequestParam String answer) {
         questionService.createQuestion(Question.builder()
                 .exercise(UUID.fromString(exercise))
                 .description(description)
@@ -80,6 +80,6 @@ public class ExerciseController {
     @GetMapping("/remove/{exerciseId}")
     public String removeExercise(@PathVariable String exerciseId) {
         exerciseService.removeExercise(UUID.fromString(exerciseId));
-        return "redirect:/exercise/list" ;
+        return "redirect:/exercise/list";
     }
 }

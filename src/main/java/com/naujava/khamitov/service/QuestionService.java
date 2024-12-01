@@ -39,7 +39,7 @@ public class QuestionService {
                 .stream()
                 .map(i -> {
                     List<String> invariants = new ArrayList<>(Stream.concat(i.getInvariants().stream(),
-                                    Stream.of(i.getAnswer())).toList());
+                            Stream.of(i.getAnswer())).toList());
                     Collections.shuffle(invariants);
                     return QuestionDto.builder()
                             .id(i.getId().toString())

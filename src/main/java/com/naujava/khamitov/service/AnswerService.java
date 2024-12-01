@@ -38,6 +38,10 @@ public class AnswerService {
         return answerRepository.findAll();
     }
 
+    public List<Answer> getAllUserAnswers(UUID authorId) {
+        return answerRepository.findAllBuAuthor(authorId);
+    }
+
     public Answer submitAnswer(AnswerDto answerDto) {
         Answer answer = getAnswerById(answerDto.getId()).orElseThrow(() -> new RuntimeException("Not found"));
         List<Question> questions = questionService.getAllExerciseQuestions(answer.getExercise());

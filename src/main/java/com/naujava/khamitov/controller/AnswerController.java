@@ -1,5 +1,6 @@
 package com.naujava.khamitov.controller;
 
+import com.naujava.khamitov.model.constant.Role;
 import com.naujava.khamitov.model.dto.AnswerDto;
 import com.naujava.khamitov.model.entity.Answer;
 import com.naujava.khamitov.model.entity.User;
@@ -29,9 +30,13 @@ public class AnswerController {
     private final UserService userService;
 
     @GetMapping("/list")
-    public String answerList(Model model) {
-        // TODO get with auth
-        model.addAttribute("answers", answerService.getAllAnswers());
+    public String answerList(Principal principal, Model model) {
+        User user = userService.getUserByName(principal.getName()).orElseThrow(() -> new RuntimeException(""));
+        if (Role.ADMIN.equals(user.getRole())) {
+            model.addAttribute("answers", answerService.getAllAnswers());
+        } else {
+            model.addAttribute("answers", answerService.getAllUserAnswers(user.getId()));
+        }
         return "answer-list";
     }
 
