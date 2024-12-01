@@ -20,9 +20,12 @@ services:
     networks:
       - app-network
     environment:
+      - PG_HOST=postgres
       - PG_DB=naujava
       - PG_USER=postgres
       - PG_PASSWORD=postgres
+    ports:
+      - "8080:8080"
 
 networks:
   app-network:

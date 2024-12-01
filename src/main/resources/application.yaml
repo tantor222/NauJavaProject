@@ -6,13 +6,13 @@ cors:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/${PG_DB:naujava}
+    url: jdbc:postgresql://${PG_HOST:localhost}:5432/${PG_DB:naujava}
     username: ${PG_USER:postgres}
     password: ${PG_PASSWORD:postgres}
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
   jpa:
-    show_sql: true
+    show_sql: false
     hibernate:
       ddl-auto: none
   data:
